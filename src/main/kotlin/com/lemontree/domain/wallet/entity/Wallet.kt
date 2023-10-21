@@ -2,6 +2,7 @@ package com.lemontree.domain.wallet.entity
 
 import com.lemontree.domain.common.entity.*
 import com.lemontree.domain.member.entity.*
+import com.lemontree.domain.wallet.exception.*
 import jakarta.persistence.*
 
 @Entity
@@ -22,4 +23,11 @@ class Wallet(
     var maximumBalance: Long
 
 ) : BaseEntity() {
+
+    fun deposit(amount: Long) {
+        if (this.balance + amount > maximumBalance) {
+            throw BalanceMaxedOutException("금액의 최대 한도를 초과할 수 없습니다.")
+        }
+        this.balance = this.balance + amount
+    }
 }
