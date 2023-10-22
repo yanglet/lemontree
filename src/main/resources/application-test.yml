@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:lemontree
+    url: jdbc:h2:mem:lemontree_test
     username: sa
     password:
     driver-class-name: org.h2.Driver

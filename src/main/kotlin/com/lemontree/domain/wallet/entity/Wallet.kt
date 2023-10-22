@@ -30,4 +30,11 @@ class Wallet(
         }
         this.balance = this.balance + amount
     }
+
+    fun withdraw(amount: Long) {
+        if (this.balance - amount < 0) {
+            throw BalanceInsufficientException("금액이 부족합니다.")
+        }
+        this.balance = this.balance - amount
+    }
 }
