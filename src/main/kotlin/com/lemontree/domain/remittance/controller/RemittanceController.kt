@@ -3,6 +3,8 @@ package com.lemontree.domain.remittance.controller
 import com.lemontree.domain.remittance.service.*
 import com.lemontree.domain.remittance.service.dto.*
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,5 +20,12 @@ class RemittanceController(
         @RequestBody request: RemittanceSaveRequest
     ) = ResponseEntity.ok(
         remittanceService.remit(request)
+    )
+
+    @GetMapping("/{memberNo}")
+    fun readRemittancesByMemberNo(
+        @PathVariable memberNo: Long
+    ) = ResponseEntity.ok(
+        remittanceService.readRemittancesByMemberNo(memberNo)
     )
 }

@@ -7,9 +7,12 @@ import com.lemontree.domain.member.repository.*
 import com.lemontree.domain.remittance.entity.*
 import com.lemontree.domain.remittance.repository.*
 import com.lemontree.domain.remittance.service.dto.*
+import com.lemontree.domain.remittance.service.extension.*
 import com.lemontree.domain.wallet.exception.*
 import com.lemontree.domain.wallet.repository.*
+import org.springframework.data.repository.*
 import org.springframework.stereotype.*
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class RemittanceService(
@@ -62,5 +65,12 @@ class RemittanceService(
             )
             remittanceRepository.save(remittance)
         }
+    }
+
+    @Transactional(readOnly = true)
+    fun readRemittancesByMemberNo(memberNo: Long): Iterable<RemittanceReadResponse> {
+        val from = memberRepository.findByIdOrNull(memberNo) ?: throw MemberNotFoundException("찾을 수 없는 회원입니다.")
+        val remittances = remittanceRepository.findByFrom(from.memberNo)
+        return remittances.map { it.toReadResponse() }
     }
 }
