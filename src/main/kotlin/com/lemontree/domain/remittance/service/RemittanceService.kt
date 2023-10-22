@@ -10,6 +10,8 @@ import com.lemontree.domain.remittance.service.dto.*
 import com.lemontree.domain.remittance.service.extension.*
 import com.lemontree.domain.wallet.exception.*
 import com.lemontree.domain.wallet.repository.*
+import org.springframework.cache.annotation.CacheEvict
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.repository.*
 import org.springframework.stereotype.*
 import org.springframework.transaction.annotation.Transactional
@@ -21,6 +23,7 @@ class RemittanceService(
     private val walletRepository: WalletRepository,
     private val distributedLockService: DistributedLockService
 ) {
+    @CacheEvict(cacheNames = ["Remittance"], key = "#request.from", cacheManager = "customCacheManager")
     fun remit(request: RemittanceSaveRequest) {
         distributedLockService.doDistributedLock("remit::${request.to}") {
             val fromMember = memberRepository.findByMemberNoAndStatus(request.from, ACTIVE) ?: throw MemberNotFoundException("찾을 수 없는 회원입니다.")
@@ -68,6 +71,7 @@ class RemittanceService(
     }
 
     @Transactional(readOnly = true)
+    @Cacheable(cacheNames = ["Remittance"], key = "#memberNo", cacheManager = "customCacheManager")
     fun readRemittancesByMemberNo(memberNo: Long): Iterable<RemittanceReadResponse> {
         val from = memberRepository.findByIdOrNull(memberNo) ?: throw MemberNotFoundException("찾을 수 없는 회원입니다.")
         val remittances = remittanceRepository.findByFrom(from.memberNo)
