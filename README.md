@@ -1,5 +1,7 @@
 # lemontree
 
+### [작업 PR들은 여기서 확인하실 수 있습니다.](https://github.com/yanglet/lemontree/pulls?q=is%3Apr+is%3Aclosed)
+
 ### 바로가기
 - [실행 방법](#실행-방법)
 - [기술 스택](#기술-스택)
