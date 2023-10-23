@@ -30,6 +30,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.15")
+
 	implementation("org.redisson:redisson-spring-boot-starter:3.23.1")
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -42,8 +45,6 @@ dependencies {
 	testImplementation("io.kotest:kotest-runner-junit5-jvm:${kotestVersion}")
 	testImplementation("io.kotest:kotest-assertions-core-jvm:${kotestVersion}")
 	testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
-
-	testImplementation("io.mockk:mockk:1.13.4")
 }
 
 tasks.withType<KotlinCompile> {
