@@ -13,6 +13,7 @@
 # cd lemontree
 # docker-compose up -d (redis 띄우기)
 # ./gradlew clean bootjar
+# java -jar ./build/libs/lemontree-0.0.1-SNAPSHOT.jar
 ```
 
 ### 기술 스택
