@@ -66,7 +66,7 @@ class RemittanceService(
                     )
                 }
             )
-            remittanceRepository.save(remittance)
+            remittanceRepository.saveAndFlush(remittance)
         }
     }
 

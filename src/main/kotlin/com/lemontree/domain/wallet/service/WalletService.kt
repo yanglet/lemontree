@@ -21,6 +21,7 @@ class WalletService(
             val member = memberRepository.findByMemberNoAndStatus(memberNo, ACTIVE) ?: throw MemberNotFoundException("찾을 수 없는 회원입니다.")
             val wallet = walletRepository.findByMember(member) ?: throw WalletNotFoundException("찾을 수 없는 지갑입니다.")
             wallet.deposit(request.amount)
+            walletRepository.flush()
         }
     }
 }
