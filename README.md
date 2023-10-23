@@ -47,6 +47,7 @@ Kotest 5.5.5
     
 6. 돈과 관련된 민감한 비즈니스이므로 테스트 코드를 작성하여 신뢰성을 높이고자 했다.
 ```
+![image](https://github.com/yanglet/lemontree/assets/96788792/17f41544-4ea4-4e14-8b00-9f42fb3ea819)
 
 ### API 명세
 ```shell
