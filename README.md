@@ -186,6 +186,8 @@ CREATE TABLE `lemontree`.`WALLET`
     PRIMARY KEY (`wallet_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE='utf8mb4_general_ci' COMMENT='지갑';
 
+CREATE INDEX idx_member_no ON `lemontree`.`WALLET` ( member_no );
+
 CREATE TABLE `lemontree`.`REMITTANCE`
 (
     `remittance_no`   INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '송금 번호',
@@ -202,4 +204,6 @@ CREATE TABLE `lemontree`.`REMITTANCE`
     `update_operator` VARCHAR(50) NOT NULL COMMENT '수정자',
     PRIMARY KEY (`remittance_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE='utf8mb4_general_ci' COMMENT='송금';
+
+CREATE INDEX idx_from_member_no ON `lemontree`.`REMITTANCE` ( from_member_no );
 ```
